@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>For Eugene</title>
+    <style>
+    /* Set the width and height of the left side to 10% and the right side to 80% */
+    /* Add Media Queries to adjust the layout for different screen sizes */
+    html, body {
+      height: 100%;
+    }
+
+span {
+  line-height: 2.3;
+}
+
+    ul.hidden {
+    display: none;
+    }
+
+
+    @media only screen and (min-width: 1200px) {
+      .left-side {
+        float: left;
+        width: 20%;
+        height: 90vh;
+        overflow: auto; /* Add this to enable scrolling */
+      }
+
+      .middle-side {
+        float: left;
+        width: 20%;
+        height: 90vh;
+        overflow: auto;
+      }
+
+      .right-side {
+        float: right;
+        width: 59%;
+        height: 100vh;
+      }
+
+
+.buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 21.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.prev-button,
+.next-button,
+#page-number {
+  font-size: 15px;
+  padding: 10px;
+}
+
+.prev-button,
+.next-button {
+  width: 30%;
+}
+
+#page-number {
+  width: 20%;
+  text-align: center;
+}
+    }
+
+    @media only screen and (max-width: 1180px) {
+
+    .left-side {
+        float: left;
+        width: 22%;
+        height: 90vh;
+        overflow: auto; /* Add this to enable scrolling */
+        margin-left: -130px;
+      }
+
+    .middle-side {
+        float: left;
+        width: 22%;
+        height: 90vh;
+        overflow: auto;
+        margin-left: -20px;
+    }
+
+    .right-side {
+        float: left;
+        width: 60%;
+        height: 100vh;
+        overflow: auto;
+      }
+    .left-side {
+      padding-left: 100px; /* Change the value as needed */
+}
+
+.buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 21.5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.prev-button,
+.next-button,
+#page-number {
+  font-size: 15px;
+  padding: 10px;
+}
+
+.prev-button,
+.next-button {
+  width: 30%;
+}
+
+#page-number {
+  width: 20%;
+  text-align: center;
+}
+
+    }
+
+
+    .left-side {
+      border-right: 1px solid #ccc;
+      /* margin-left: -10px; */
+}
+
+    /* .middle-side {
+        border-right: 1px solid black;
+        margin-left: -10px;
+    } */
+
+
+
+    .left-side
+    ul {
+        list-style-type: none;
+        margin-left: -20;
+        margin-right: 20;
+}
+
+    .middle-side
+    ul {
+        list-style-type: none;
+        margin-left: -10;
+        margin-right: 10;
+}
+
+    li[onclick]:hover {
+        text-decoration: underline;
+}
+
+    li[onclick] {
+      margin-bottom: 10px;
+}
+
+    span.toggle:hover {
+    text-decoration: underline;
+}
+
+
+    iframe {
+        border: 1px solid #ccc;
+}
+
+  </style>
+
+    <script>
+
+    var pathArray = window.location.pathname.split('/');
+    var currentPage = pathArray[pathArray.length - 1];
+    var pageTitle = currentPage.substring(0, currentPage.lastIndexOf('.'));
+    document.title = pageTitle;
+
+    function prevPage() {
+      var currentUrl = window.location.href;
+      var currentNumber = parseInt(currentUrl.match(/(\d+)\.html$/)[1]);
+      var prevNumber = currentNumber - 1;
+      var prevUrl = currentUrl.replace(currentNumber + ".html", prevNumber + ".html");
+      window.location.href = prevUrl;
+    }
+
+    function nextPage() {
+      var currentUrl = window.location.href;
+      var currentNumber = parseInt(currentUrl.match(/(\d+)\.html$/)[1]);
+      var nextNumber = currentNumber + 1;
+      var nextUrl = currentUrl.replace(currentNumber + ".html", nextNumber + ".html");
+      window.location.href = nextUrl;
+    }
+
+    function setPageNumber() {
+      var currentUrl = window.location.href;
+      var pageNumber = currentUrl.match(/(\d+)\.html$/)[1];
+      document.getElementById("page-number").textContent = "Page " + pageNumber;
+    }
+
+    function openWebsite(word) {
+      var url = "https://ko.dict.naver.com/#/search?range=word&query=" + word;
+      // set the src of the iframe to the URL
+      document.getElementById("website").src = url;
+    }
+
+  </script>
+
+
+</head>
+
+
+<body onload="setPageNumber()">
+
+  <div class="buttons">
+    <button class="prev-button" onclick="prevPage()">Prev Page</button>
+    <button class="next-button" onclick="nextPage()">Next Page</button>
+    <div id="page-number"></div>
+  </div>
+
+  <div class="left-side">
+    <ul style="list-style-type:none;">
+      <p>       <li>
+        <span class="toggle">&#9654;</span> 가
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('것이다')">것이다</li>
+          <li onclick="openWebsite('경기도')">경기도</li>
+          <li onclick="openWebsite('계엄군')">계엄군</li>
+          <li onclick="openWebsite('공식')">공식</li>
+          <li onclick="openWebsite('광주')">광주</li>
+          <li onclick="openWebsite('광주여고')">광주여고</li>
+          <li onclick="openWebsite('국가')">국가</li>
+          <li onclick="openWebsite('국제사회')">국제사회</li>
+          <li onclick="openWebsite('기록물')">기록물</li>
+          <li onclick="openWebsite('기자들')">기자들</li>
+        </ul>
+      </li>
+      <li>
+        <span class="toggle">&#9654;</span> 나
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('내세우는가')">내세우는가</li>
+          <li onclick="openWebsite('내용')">내용</li>
+          <li onclick="openWebsite('년')">년</li>
+          <li onclick="openWebsite('노력')">노력</li>
+          <li onclick="openWebsite('노력하였다')">노력하였다</li>
+          <li onclick="openWebsite('노트')">노트</li>
+        </ul>
+      </li>
+      <li>
+        <span class="toggle">&#9654;</span> 다
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('당시')">당시</li>
+          <li onclick="openWebsite('들었을지라도')">들었을지라도</li>
+          <li onclick="openWebsite('등')">등</li>
+          <li onclick="openWebsite('등재')">등재</li>
+          <li onclick="openWebsite('등재되다')">등재되다</li>
+        </ul>
+      </li>
+      <li>라</li>
+      <li>
+        <span class="toggle">&#9654;</span> 마
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('만행')">만행</li>
+          <li onclick="openWebsite('말하지')">말하지</li>
+          <li onclick="openWebsite('무등일보')">무등일보</li>
+          <li onclick="openWebsite('무리')">무리</li>
+          <li onclick="openWebsite('민주주의')">민주주의</li>
+        </ul>
+      </li>
+      <li>
+        <span class="toggle">&#9654;</span> 바
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('발전')">발전</li>
+          <li onclick="openWebsite('발표하는가')">발표하는가</li>
+          <li onclick="openWebsite('병원')">병원</li>
+          <li onclick="openWebsite('블로그')">블로그</li>
+        </ul>
+      </li>
+      <li>
+        <span class="toggle">&#9654;</span> 사
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('사실')">사실</li>
+          <li onclick="openWebsite('사실대로')">사실대로</li>
+          <li onclick="openWebsite('세계기록유산')">세계기록유산</li>
+          <li onclick="openWebsite('수습하기')">수습하기</li>
+          <li onclick="openWebsite('시민')">시민</li>
+          <li onclick="openWebsite('시민들')">시민들</li>
+          <li onclick="openWebsite('시민참여')">시민참여</li>
+          <li onclick="openWebsite('시사')">시사</li>
+        </ul>
+      </li>
+ </p>
+    </ul>
+  </div>
+
+  <div class="middle-side">
+    <ul style="list-style-type:none;">
+      <p>      <li>
+        <span class="toggle">&#9654;</span> 아
+        <ul class="hidden"; style="list-style-type:none;">
+          <li onclick="openWebsite('아니며')">아니며</li>
+          <li onclick="openWebsite('않고')">않고</li>
+          <li onclick="openWebsite('않는가')">않는가</li>
+          <li onclick="openWebsite('야만스러운')">야만스러운</li>
+          <li onclick="openWebsite('어지럽히는')">어지럽히는</li>
+          <li onclick="openWebsite('언론')">언론</li>
+          <li onclick="openWebsite('오일팔민주화운동')">오일팔민주화운동</li>
+          <li onclick="openWebsite('왜')">왜</li>
+          <li onclick="openWebsite('우리')">우리</li>
+          <li onclick="openWebsite('위한')">위한</li>
+          <li onclick="openWebsite('위해')">위해</li>
+          <li onclick="openWebsite('유네스코')">유네스코</li>
+          <li onclick="openWebsite('유네스코세계기록유산')">유네스코세계기록유산</li>
+        </ul>
+      </li>
+      <li>자</li>
+      <li>차</li>
+      <li>카</li>
+      <li>타</li>
+      <li>파</li>
+      <li>하</li>
+      <li>영어 등</li>
+</p>
+    </ul>
+  </div>
+
+  <div class="right-side">
+    <iframe id="website" width="100%" height="100%"></iframe>
+  </div>
+
+
+  <script>
+    document.querySelectorAll('.toggle').forEach(function(toggle) {
+      toggle.addEventListener('click', function() {
+        var sublist = this.parentElement.querySelector('ul');
+        if (sublist) {
+          sublist.classList.toggle('hidden');
+          this.innerHTML = sublist.classList.contains('hidden') ? '&#9654;' : '&#9660;';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
