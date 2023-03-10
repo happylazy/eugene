@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Eugene I Love You!</title>
+<style>
+	input[type=number] {
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		font-size: 20px;
+		border-radius: 10px;
+	}
+	
+	.container {
+		display: flex;
+	}
+	
+	.left {
+		width: 50%;
+		text-align: center;
+	}
+	
+	.right {
+		width: 50%;
+		text-align: center;
+		padding-top: 10px;
+	}
+	
+	.enter {
+		width: 150px;
+		height: 50px;
+		background-color: #4CAF50;
+		border: none;
+		color: white;
+		font-size: 16px;
+		cursor: pointer;
+		border-radius: 10px;
+	}
+	
+	.error {
+		color: red;
+		font-size: 14px;
+	}
+</style>
+</head>
+<body>
+	<h1>Eugene We Love You!</h1>
+	<script>
+		function nextNumber(el) {
+			let number = parseInt(el.value);
+			if (number == 9) {
+				el.value = 0;
+			} else {
+				el.value = number + 1;
+			}
+		}
+		
+		function goPage() {
+			one = document.getElementById("one").value;
+			two = document.getElementById("two").value;
+			three = document.getElementById("three").value;
+			page = one * 100 + two * 10 + parseInt(three);
+			window.location.href = page + ".html";
+
+			// update value of enter button
+			document.querySelector(".enter").value = page;
+}
+
+	</script>
+
+	<div class="container">
+		<div class="left">
+			<img src="family.jpg" width="100%">
+			<h3>내 보물들!~</h3>
+			<input type="number" id="one" min="0" max="9" value="0" onclick="nextNumber(this);">
+			<input type="number" id="two" min="0" max="9" value="0" onclick="nextNumber(this);">
+			<input type="number" id="three" min="0" max="9" value="1" onclick="nextNumber(this);">
+			<input type="button" class="enter" value="Enter" onclick="goPage();">
+			<p class="error" id="error"></p>
+			
+		</div>
+		  
+		<div class="right">
+			<img src="eugene.jpg" width="70%">
+		</div>
+	</div>
+	
+	<div class="footer">
+		<p>Thank you for visiting this page!</p>
+	</div>
+	
+</body>
+</html>
